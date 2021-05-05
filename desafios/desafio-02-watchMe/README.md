@@ -1,7 +1,7 @@
 ### 📺 WatchMe
 
 <p align="center">
-  <img alt="watchme" src="/watchme.png" width="100%">
+  <img alt="watchme" src="/desafios/desafio-02-watchMe/watchme.png" width="100%">
 </p>
 
 ### 💻 Sobre 
