@@ -6,7 +6,7 @@
 
 ### 💻 Sobre 
 
-WatchMe é uma aplicação de listagem de filmes feita em React, o objetivo desse desafio é dividir em componentes funcionais a aplicação.
+WatchMe é uma aplicação de listagem de filmes feita em React. Nesse desafio dividimos uma aplicação em componentes afim de isolar as responsabilidades e facilitar a manutenção do código.
 
 ### 🖱️ Stacks e como abrir:
 
