@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
-export const Container = styled.main`
+export const Container = styled(animated.main)`
   display: flex;
   flex-direction: column;
   max-width: 1120px;

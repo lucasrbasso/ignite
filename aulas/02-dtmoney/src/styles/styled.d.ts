@@ -14,6 +14,7 @@ declare module 'styled-components' {
       shape: string;
 
       input_border: string;
+      input_text: string;
       input_background: string;
       text_title: string;
       text_body: string;

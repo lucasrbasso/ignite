@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+import { animated } from 'react-spring';
+
 export const Container = styled.header`
   background: ${props => props.theme.colors.blue};
 `;
 
-export const Content = styled.div`
+export const Content = styled(animated.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;

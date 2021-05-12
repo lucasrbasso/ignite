@@ -11,6 +11,7 @@ export default {
     shape: '#FFFFFF',
 
     input_border: '#D7D7D7',
+    input_text: '#969CB3',
     input_background: '#E7E9EE',
     text_title: '#363F5F',
     text_body: '#969CB3',

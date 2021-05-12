@@ -2,7 +2,9 @@ import Switch from 'react-switch';
 import { useTheme } from 'styled-components';
 import { shade } from 'polished';
 
-import logoImg from '../../assets/logo.svg';
+import { useSpring } from 'react-spring';
+
+import LogoImg from '../../assets/logo.svg';
 import { Container, Content } from './styles';
 
 interface HeaderProps {
@@ -16,11 +18,16 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const { colors, title } = useTheme();
 
+  const animation = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    delay: 300,
+  });
+
   return (
     <Container>
-      <Content>
+      <Content style={animation}>
         <Switch
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
           onChange={toggleTheme}
           checked={title === 'dark'}
           checkedIcon={false}
@@ -31,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
           offColor={shade(0.25, colors.blue)}
           onColor={colors.green}
         />
-        <img src={logoImg} alt="dt money" />
+        <img src={LogoImg} alt="dt money" />
         <button type="button" onClick={onOpenNewTransactionModal}>
           Nova transação
         </button>
