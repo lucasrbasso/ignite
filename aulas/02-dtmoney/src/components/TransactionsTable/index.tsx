@@ -1,4 +1,4 @@
-import { useTransactions } from '../hooks/useTransactions';
+import { useTransactions } from '../../hooks/useTransactions';
 import { Container } from './styles';
 
 export const TransactionsTable: React.FC = () => {
