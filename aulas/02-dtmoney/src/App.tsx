@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import Modal from 'react-modal';
 
-import { Dashboard } from './components/Dashboard';
+import { TransactionsProvider } from './components/hooks/useTransactions';
 
+import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
 import { NewTransactionModal } from './components/NewTransactionModal';
 import { GlobalStyle } from './styles/global';
@@ -22,7 +23,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <TransactionsProvider>
       <Header onOpenNewTransactionModal={handleOpenTransactionModal} />
       <Dashboard />
       <NewTransactionModal
@@ -30,6 +31,6 @@ export const App: React.FC = () => {
         onRequestClose={handleCloseTransactionModal}
       />
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
 };
