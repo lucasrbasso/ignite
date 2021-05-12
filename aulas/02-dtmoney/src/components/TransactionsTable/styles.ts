@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-top: 4rem;
+  overflow-x: auto;
 
   table {
     width: 100%;
@@ -18,20 +19,20 @@ export const Container = styled.div`
     td {
       padding: 1rem 2rem;
       border: 0;
-      background: var(--shape);
-      color: var(--text-body);
+      background: ${props => props.theme.colors.shape};
+      color: ${props => props.theme.colors.text_body};
       border-radius: 0.25rem;
 
       &:first-child {
-        color: var(--text-title);
+        color: ${props => props.theme.colors.text_title};
       }
 
       &.deposit {
-        color: var(--green);
+        color: ${props => props.theme.colors.green};
       }
 
       &.withdraw {
-        color: var(--red);
+        color: ${props => props.theme.colors.red};
       }
     }
   }

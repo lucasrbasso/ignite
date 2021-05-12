@@ -8,7 +8,7 @@ interface RadioProps {
 
 export const Container = styled.form`
   h2 {
-    color: var(--text-title);
+    color: ${props => props.theme.colors.text_title};
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -18,15 +18,15 @@ export const Container = styled.form`
     padding: 0 1.5rem;
     height: 4rem;
     border-radius: 0.25rem;
-    background: var(--input-background);
+    background: ${props => props.theme.colors.input_background};
 
-    border: 1px solid var(--input-border);
+    border: 1px solid ${props => props.theme.colors.input_border};
 
     font-weight: 400;
     font-size: 1rem;
 
     &::placeholder {
-      color: var(--text-body);
+      color: ${props => props.theme.colors.text_body};
     }
 
     & + input {
@@ -37,7 +37,7 @@ export const Container = styled.form`
   button[type='submit'] {
     margin-top: 1.5rem;
 
-    background: var(--green);
+    background: ${props => props.theme.colors.green};
     padding: 0 1.5rem;
     height: 4rem;
     width: 100%;
@@ -47,7 +47,7 @@ export const Container = styled.form`
 
     font-size: 1rem;
     font-weight: 600;
-    color: var(--shape);
+    color: ${props => props.theme.colors.shape};
 
     transition: filter 0.2s;
 
@@ -71,7 +71,7 @@ const colors = {
 
 export const RadioBox = styled.button<RadioProps>`
   height: 4rem;
-  border: 1px solid var(--input-border);
+  border: 1px solid ${props => props.theme.colors.input_border};
   border-radius: 0.25rem;
 
   background: ${props =>
@@ -95,6 +95,6 @@ export const RadioBox = styled.button<RadioProps>`
     display: inline-block;
     margin-left: 1rem;
     font-size: 1rem;
-    color: var(--text-title);
+    color: ${props => props.theme.colors.text_title};
   }
 `;

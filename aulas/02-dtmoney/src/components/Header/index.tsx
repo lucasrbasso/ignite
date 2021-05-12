@@ -1,16 +1,36 @@
+import Switch from 'react-switch';
+import { useTheme } from 'styled-components';
+import { shade } from 'polished';
+
 import logoImg from '../../assets/logo.svg';
 import { Container, Content } from './styles';
 
 interface HeaderProps {
   onOpenNewTransactionModal: () => void;
+  toggleTheme: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenNewTransactionModal,
+  toggleTheme,
 }) => {
+  const { colors, title } = useTheme();
+
   return (
     <Container>
       <Content>
+        <Switch
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          onChange={toggleTheme}
+          checked={title === 'dark'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          height={20}
+          width={39}
+          handleDiameter={20}
+          offColor={shade(0.25, colors.blue)}
+          onColor={colors.green}
+        />
         <img src={logoImg} alt="dt money" />
         <button type="button" onClick={onOpenNewTransactionModal}>
           Nova transação
