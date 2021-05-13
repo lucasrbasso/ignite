@@ -39,7 +39,7 @@ Technologies that I used to develop this web client
 
 ```bash
 $ git clone https://github.com/lucasrbasso/ignite-reactjs && cd ignite-reactjs/aulas/02-dtmoney
-
+```
 **Siga os passos abaixo**
 
 ```bash
