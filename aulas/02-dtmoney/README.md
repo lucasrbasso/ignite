@@ -48,10 +48,5 @@ $ yarn
 # Inicie o cliente
 $ yarn start
 ```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
 Feito com 💜 por Lucas Basso durante o Ignite - ReactJS.
