@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="dtMoney" src="/github/dtMoney.png" width="100%">
+  <img alt="dtMoney" src="/aulas/02-dtmoney/github/dtMoney.png" width="100%">
 </h1>
 
 <h3 align="center">
@@ -11,7 +11,7 @@
 </br>
 
 <p align="center">
-  <img alt="Layout" src="/github/dtMoney.gif">
+  <img alt="Layout" src="/aulas/02-dtmoney/github/dtMoney.gif">
 </p>
 
 ## 💻 Sobre o projeto
