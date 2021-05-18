@@ -1,6 +1,7 @@
+import { SignInButton } from '../SignInButton';
 import styles from './styles.module.scss';
 
-export function Header() {
+export const Header: React.FC = () => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -11,7 +12,9 @@ export function Header() {
           </a>
           <a href="/#">Posts</a>
         </nav>
+
+        <SignInButton />
       </div>
     </header>
   );
-}
+};
