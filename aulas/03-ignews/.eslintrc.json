@@ -24,6 +24,8 @@
       "@typescript-eslint"
   ],
   "rules": {
+    "no-case-declarations": "off",
+    "no-restricted-syntax": "off",
     "camelcase": "off",
     "consistent-return": "off",
     "react/prop-types": "off",
