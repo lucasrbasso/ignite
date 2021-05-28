@@ -53,6 +53,8 @@
         ]
       }
     ],
+    "no-return-assign":"off",
+    "no-param-reassign":"off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-one-expression-per-line": "off",
     "react-hooks/rules-of-hooks": "error",
