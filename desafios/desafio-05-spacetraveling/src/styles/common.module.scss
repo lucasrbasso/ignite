@@ -1,1 +1,17 @@
-// TODO
+.buttonOut {
+  margin: 0 auto;
+  height: 3.625rem;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 5.5rem;
+  border-radius: 0.25rem;
+  border: none;
+
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+
+  background-color: var(--heading);
+  color: var(--background)
+}
