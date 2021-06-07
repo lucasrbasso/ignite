@@ -19,7 +19,7 @@
 O IgNews é uma plataforma de assinatura de leitura digital, semelhante a um blog, desenvolvido em NextJS, utilizando os conceitos de SSG e SSR.<br>
 Clique [aqui]() para visualizar o layout no Figma.
 
-## 🚀 Technologias
+## 🚀 Tecnologias
 
 Tecnologias que usei para criar o projeto:
 
