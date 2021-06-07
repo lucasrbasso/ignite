@@ -16,7 +16,7 @@
 
 ## 💻 Sobre o projeto
 
-O IgNews é uma plataforma de assinatura de leitura digital, semelhante a um blog. <br>
+O IgNews é uma plataforma de assinatura de leitura digital, semelhante a um blog, desenvolvido em NextJS, utilizando os conceitos de SSG e SSR.<br>
 Clique [aqui]() para visualizar o layout no Figma.
 
 ## 🚀 Technologias
@@ -50,6 +50,13 @@ $ git clone https://github.com/lucasrbasso/ignite-reactjs && cd ignite-reactjs/a
 $ yarn
 # Inicie o cliente
 $ yarn dev
+```
+
+**Em outro terminal**
+
+```bash
+# Utilize a CLI do Stripe
+$ stripe listen --foward-to localhost:3000/api/webhooks
 ```
 ---
 Feito com 💜 por Lucas Basso durante o Ignite - ReactJS.
