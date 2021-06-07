@@ -16,7 +16,7 @@
 
 ## 💻 Sobre o projeto
 
-O IgNews é uma plataforma de assinatura de leitura digital, semelhante a um blog.
+O IgNews é uma plataforma de assinatura de leitura digital, semelhante a um blog. <br>
 Clique [aqui]() para visualizar o layout no Figma.
 
 ## 🚀 Technologias
