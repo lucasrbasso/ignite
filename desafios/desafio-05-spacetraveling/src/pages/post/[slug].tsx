@@ -179,8 +179,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
 
   return {
-    paths,
-    fallback: true,
+    paths: [],
+    fallback: 'blocking',
   };
 };
 
@@ -244,5 +244,6 @@ export const getStaticProps: GetStaticProps = async ({
       },
       preview,
     },
+    revalidate: 60 * 30, // 30 minutes
   };
 };
