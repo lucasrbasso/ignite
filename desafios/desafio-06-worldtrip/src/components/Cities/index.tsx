@@ -1,7 +1,25 @@
 import { Grid, Heading, Box } from "@chakra-ui/react";
 import { City } from "./City";
 
-export default function Cities() {
+interface City {
+  city_name: string,
+  country: string,
+  flag: {
+    url: string,
+  },
+  photo: {
+    url: string,
+  }
+}
+
+interface CitiesProps {
+  cities: City[],
+}
+
+export const Cities: React.FC<CitiesProps> = ({ cities }) => {
+
+  console.log(cities)
+
   return (
     <>
       <Heading fontWeight="500" fontSize={["2xl","4xl"]} mb="10" mt={["2rem","5rem"]}>Cidades +100</Heading>
@@ -11,11 +29,10 @@ export default function Cities() {
         justifyContent="center"
         px={["30px", "0"]}
       >
-        <City city="Paris" country="França"/>
-        <City city="Londres" country="Reino Unido"/>
-        <City city="Roma" country="Itália"/>
-        <City city="Praga" country="República Tcheca"/>
-        <City city="Amsterdã" country="Holanda"/>
+        {cities.map((city) => (
+            <City key={city.city_name} city={city} />
+          )
+        )}
       </Grid>
     </>
   )
