@@ -24,6 +24,8 @@
       "@typescript-eslint"
   ],
   "rules": {
+    "no-nested-ternary": "off",
+    "no-shadow": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "import/no-extraneous-dependencies" : "off",
     "no-case-declarations": "off",
