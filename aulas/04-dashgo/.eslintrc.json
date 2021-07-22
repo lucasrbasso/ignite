@@ -24,6 +24,7 @@
       "@typescript-eslint"
   ],
   "rules": {
+    "react/require-default-props": "off",
     "no-nested-ternary": "off",
     "no-shadow": "off",
     "jsx-a11y/anchor-is-valid": "off",
