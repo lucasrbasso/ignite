@@ -15,7 +15,6 @@ const options = {
     zoom: {
       enabled: false,
     },
-    foreColor: theme.colors.gray[500],
   },
   grid: {
     show: false,
