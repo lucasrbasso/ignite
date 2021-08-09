@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
-import { api } from "../services/api";
+import { api } from "../services/apiClient";
 import Router from "next/router";
 
 type AuthProviderProps = {
