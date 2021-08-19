@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../services/api';
 
 import { Button } from './Button';
@@ -20,9 +20,9 @@ export function SideBar({ selectedGenreId, setSelectedGenreId }: SideBarProps) {
 
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
-  function handleClickButton(id: number) {
+  const handleClickButton = useCallback((id: number) => {
     setSelectedGenreId(id);
-  }
+  }, []);
 
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
