@@ -44,7 +44,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({ post }) => {
           />
 
           <div className={styles.continueReading}>
-            WannaContinueReading?
+            Wanna Continue Reading?
             <Link href="/">
               <a> Subscribe now 🤗</a>
             </Link>

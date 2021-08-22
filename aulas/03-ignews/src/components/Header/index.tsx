@@ -1,12 +1,8 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { ActiveLink } from '../ActiveLink/index';
 import { SignInButton } from '../SignInButton';
 import styles from './styles.module.scss';
 
 export const Header: React.FC = () => {
-  const { asPath } = useRouter();
-
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
