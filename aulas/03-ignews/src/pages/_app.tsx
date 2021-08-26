@@ -6,7 +6,7 @@ import '../styles/global.scss';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <NextAuthProvider session={pageProps.session}>
-      <Header />
+      {process.browser && <Header />}
       <Component {...pageProps} />
     </NextAuthProvider>
   );

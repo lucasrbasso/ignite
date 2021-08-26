@@ -16,6 +16,9 @@
 
   --cyan-500: #61dafb;
   --yellow-500: #eba417;
+
+  --darker-gradient: linear-gradient(90deg, rgba(35,35,38,1) 32%, rgba(18,18,20,1) 85%);
+  --select-menu-gradient: linear-gradient(90deg, rgba(21,21,23,1) 32%, rgba(18,18,20,1) 85%);
 }
 
 @media (max-width: 1080px) {

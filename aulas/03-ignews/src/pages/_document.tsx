@@ -15,6 +15,23 @@ export default class MyDocument extends Document {
             href="/images/favicon.png"
             type="image/png"
           />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+          />
+          <meta
+            property="og:title"
+            content="Ignews - News about the React world"
+          />
+          <meta property="og:type" content="blog" />
+          <meta
+            property="og:description"
+            content="The best news portal about the react universe!"
+          />
+          <meta
+            property="og:image"
+            content="https://i.ibb.co/zrrWV25/react-js.png"
+          />
         </Head>
         <body>
           <Main />

@@ -6,7 +6,7 @@
 
 .posts {
   max-width: 720px;
-  margin: 5rem auto 0;
+  margin: 5rem auto 1.5rem;
 
   a {
     display: block;
@@ -42,6 +42,20 @@
 
     &:hover strong{
       color: var(--yellow-500);
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+
+    margin: 2rem auto 1.5rem;
+
+    strong {
+      font-size: 1.4rem;
+    }
+
+    p {
+      text-align: justify;
+      font-size: 0.9rem;
     }
   }
 }
