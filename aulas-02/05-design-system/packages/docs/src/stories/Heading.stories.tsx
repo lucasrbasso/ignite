@@ -14,6 +14,15 @@ export const CustomTag: StoryObj<HeadingProps> = {
   args: {
     children: 'H1 heading',
     as: 'h1',
+    size: 'md',
+  },
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg', 'xl', '4xl', '5xl', '6xl'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
   },
   parameters: {
     docs: {
