@@ -18,6 +18,9 @@ export function buildAuthNextOptions(
         authorization: {
           params: {
             scope: 'email profile https://www.googleapis.com/auth/calendar',
+            prompt: 'consent',
+            access_type: 'offline',
+            response_type: 'code',
           },
         },
         profile(profile: GoogleProfile) {
