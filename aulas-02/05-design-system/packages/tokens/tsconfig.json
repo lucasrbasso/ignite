@@ -1,4 +1,0 @@
-{
-  "extends": "@lucas-ui/ts-config/base.json",
-  "include": ["src"]
-}
