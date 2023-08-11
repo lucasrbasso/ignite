@@ -3,17 +3,21 @@ lockfileVersion: 5.4
 specifiers:
   '@rocketseat/eslint-config': ^2.1.0
   '@types/node': ^20.4.9
+  dotenv: ^16.3.1
   eslint: ^8.46.0
   fastify: ^4.21.0
   knex: ^2.5.1
   sqlite3: ^5.1.6
   tsx: ^3.12.7
   typescript: ^5.1.6
+  zod: ^3.21.4
 
 dependencies:
+  dotenv: 16.3.1
   fastify: 4.21.0
   knex: 2.5.1_sqlite3@5.1.6
   sqlite3: 5.1.6
+  zod: 3.21.4
 
 devDependencies:
   '@rocketseat/eslint-config': 2.1.0_7haavtekmro7ptbnqmctjaodju
@@ -1084,6 +1088,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3538,3 +3547,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false
