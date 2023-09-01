@@ -14,7 +14,7 @@ GymPass style app
 - [ ] Deve ser possível o usuário realizar check-in em uma academia;
 - [ ] Deve ser possível validar o check-in de um usuário;
 - [ ] Deve ser possível cadastrar uma academia;
- 
+
 ## RNs
 
 - [ ] O usuário não deve poder se cadastrar com um e-mail duplicado;
