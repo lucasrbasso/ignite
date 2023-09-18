@@ -2,7 +2,7 @@ import fastify from 'fastify'
 import { appRoutes } from './http/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
-import { UserAlreadyExists } from './use-cases/errors/user-already-exists-error'
+import { UserAlreadyExistsError } from './use-cases/errors/user-already-exists-error'
 
 export const app = fastify()
 app.register(appRoutes)
@@ -14,7 +14,7 @@ app.setErrorHandler((error, _, reply) => {
       .send({ message: 'Validation error.', issues: error.format() })
   }
 
-  if (error instanceof UserAlreadyExists) {
+  if (error instanceof UserAlreadyExistsError) {
     return reply.status(409).send({ message: error.message })
   }
 
