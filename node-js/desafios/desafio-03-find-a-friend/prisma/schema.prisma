@@ -21,6 +21,28 @@ enum Size {
   BIG
 }
 
+model Pet {
+  id              String      @id @default(uuid())
+  name            String
+  about           String
+  age             Int
+  independence    Int
+  energy          Int
+  organization_id String?
+  environment     Environment
+  size            Size
+
+  requests Json
+  pictures Picture[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+
+  Organization Organization? @relation(fields: [organization_id], references: [id])
+
+  @@map("pets")
+}
+
 model Organization {
   id            String  @id @default(uuid())
   confirmed     Boolean @default(false)
@@ -31,29 +53,12 @@ model Organization {
   phone_number  String  @unique()
   password_hash String
 
+  pets Pet[]
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt()
 
   @@map("organizations")
-}
-
-model Pet {
-  id           String      @id @default(uuid())
-  name         String
-  description  String
-  age          Int
-  independence Int
-  energy       Int
-  environment  Environment
-  size         Size
-
-  requests Request[]
-  pictures Picture[]
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt()
-
-  @@map("pets")
 }
 
 model Picture {
@@ -64,17 +69,4 @@ model Picture {
   pet_id String?
 
   @@map("pictures")
-}
-
-model Request {
-  id          String @id @default(uuid())
-  description String
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt()
-
-  Pet    Pet?    @relation(fields: [pet_id], references: [id])
-  pet_id String?
-
-  @@map("requests")
 }
