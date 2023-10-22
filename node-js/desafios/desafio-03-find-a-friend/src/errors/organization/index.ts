@@ -1,7 +1,8 @@
-import { OrganizationAlreadyExistsWithThisEmail } from './organization-with-same-email'
-import { OrganizationAlreadyExistsWithThisPhoneNumber } from './organization-with-same-phone-number'
-
+import { BadCredentialsError } from './invalid-credentials'
+import { OrganizationAlreadyExistsWithThisEmailError } from './organization-with-same-email'
+import { OrganizationAlreadyExistsWithThisPhoneNumberError } from './organization-with-same-phone-number'
 export {
-  OrganizationAlreadyExistsWithThisEmail,
-  OrganizationAlreadyExistsWithThisPhoneNumber,
+  OrganizationAlreadyExistsWithThisEmailError,
+  OrganizationAlreadyExistsWithThisPhoneNumberError,
+  BadCredentialsError,
 }

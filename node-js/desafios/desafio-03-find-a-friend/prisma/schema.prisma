@@ -32,7 +32,7 @@ model Pet {
   environment     Environment
   size            Size
 
-  requests Json
+  requests String[]
   pictures Picture[]
 
   created_at DateTime @default(now())
@@ -49,6 +49,8 @@ model Organization {
   name          String
   email         String  @unique()
   cep           String
+  state         String
+  city          String
   street_number String
   phone_number  String  @unique()
   password_hash String

@@ -2,10 +2,10 @@ import { hash } from 'bcryptjs'
 
 import { RegisterOrganizationDTO } from '@/dtos/organization/register-organization.dto'
 import { OrganizationRepository } from '@/repositories/organization-repository'
-import { RegisterOrganizationResponseDTO } from '@/dtos/organization/register-organization-response-dto'
+import { RegisterOrganizationResponseDTO } from '@/dtos/organization/register-organization-response.dto'
 import {
-  OrganizationAlreadyExistsWithThisEmail,
-  OrganizationAlreadyExistsWithThisPhoneNumber,
+  OrganizationAlreadyExistsWithThisEmailError,
+  OrganizationAlreadyExistsWithThisPhoneNumberError,
 } from '@/errors/organization'
 import { logger } from '@/utils/logger'
 
@@ -17,6 +17,8 @@ export class RegisterUseCase {
     email,
     name,
     password,
+    city,
+    state,
     phone_number,
     street_number,
   }: RegisterOrganizationDTO): Promise<RegisterOrganizationResponseDTO> {
@@ -28,14 +30,14 @@ export class RegisterUseCase {
 
     if (organizationWithSameEmail) {
       logger.error(`c=RegisterUseCase m=execute f=organizationWithSameEmail`)
-      throw new OrganizationAlreadyExistsWithThisEmail()
+      throw new OrganizationAlreadyExistsWithThisEmailError()
     }
 
     if (organizationWithSamePhoneNumber) {
       logger.error(
         `c=RegisterUseCase m=execute f=organizationWithSamePhoneNumber`,
       )
-      throw new OrganizationAlreadyExistsWithThisPhoneNumber()
+      throw new OrganizationAlreadyExistsWithThisPhoneNumberError()
     }
 
     const password_hash = await hash(password, 6)
@@ -45,6 +47,8 @@ export class RegisterUseCase {
       email,
       name,
       password_hash,
+      city,
+      state,
       phone_number,
       street_number,
     })

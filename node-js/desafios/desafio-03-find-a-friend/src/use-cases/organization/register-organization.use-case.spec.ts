@@ -2,8 +2,8 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { RegisterUseCase } from './register-organization.use-case'
 import { InMemoryOrganizationRepository } from '@/repositories/in-memory/in-memory-organization-repository'
 import {
-  OrganizationAlreadyExistsWithThisEmail,
-  OrganizationAlreadyExistsWithThisPhoneNumber,
+  OrganizationAlreadyExistsWithThisEmailError,
+  OrganizationAlreadyExistsWithThisPhoneNumberError,
 } from '@/errors/organization'
 
 let organizationRepository: InMemoryOrganizationRepository
@@ -49,7 +49,7 @@ describe('Register Use Case', () => {
         phone_number: '5535123456789',
         street_number: '20',
       }),
-    ).rejects.toBeInstanceOf(OrganizationAlreadyExistsWithThisEmail)
+    ).rejects.toBeInstanceOf(OrganizationAlreadyExistsWithThisEmailError)
   })
 
   it('should not be able to register with same phone number twice', async () => {
@@ -73,6 +73,6 @@ describe('Register Use Case', () => {
         phone_number,
         street_number: '20',
       }),
-    ).rejects.toBeInstanceOf(OrganizationAlreadyExistsWithThisPhoneNumber)
+    ).rejects.toBeInstanceOf(OrganizationAlreadyExistsWithThisPhoneNumberError)
   })
 })

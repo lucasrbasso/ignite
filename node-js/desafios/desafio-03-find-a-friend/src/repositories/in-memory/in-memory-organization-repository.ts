@@ -36,6 +36,8 @@ export class InMemoryOrganizationRepository implements OrganizationRepository {
       name: data.name,
       email: data.email,
       street_number: data.street_number,
+      state: data.state,
+      city: data.city,
       cep: data.cep,
       phone_number: data.phone_number,
       password_hash: data.password_hash,
