@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { RegisterUseCase } from './register-organization.use-case'
-import { InMemoryOrganizationRepository } from '@/repositories/in-memory/in-memory-organization-repository'
+import { InMemoryOrganizationRepository } from '@/repositories/in-memory/in-memory-organization.repository'
 import {
   OrganizationAlreadyExistsWithThisEmailError,
   OrganizationAlreadyExistsWithThisPhoneNumberError,
@@ -21,6 +21,8 @@ describe('Register Use Case', () => {
       email: 'johncompany@example.com',
       name: 'John Doe',
       password: '123456',
+      state: 'MG',
+      city: 'Poços de Caldas',
       phone_number: '5535123456789',
       street_number: '20',
     })
@@ -36,6 +38,8 @@ describe('Register Use Case', () => {
       email,
       name: 'John Doe',
       password: '123456',
+      state: 'MG',
+      city: 'Poços de Caldas',
       phone_number: '5535123456789',
       street_number: '20',
     })
@@ -46,6 +50,8 @@ describe('Register Use Case', () => {
         email: 'johncompany@example.com',
         name: 'John Doe',
         password: '123456',
+        state: 'MG',
+        city: 'Poços de Caldas',
         phone_number: '5535123456789',
         street_number: '20',
       }),
@@ -60,6 +66,8 @@ describe('Register Use Case', () => {
       email: 'johncompany@example.com',
       name: 'John Doe',
       password: '123456',
+      state: 'MG',
+      city: 'Poços de Caldas',
       phone_number,
       street_number: '20',
     })
@@ -70,6 +78,8 @@ describe('Register Use Case', () => {
         email: 'johncompany2@example.com',
         name: 'John Doe',
         password: '123456',
+        state: 'MG',
+        city: 'Poços de Caldas',
         phone_number,
         street_number: '20',
       }),
