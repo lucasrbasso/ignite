@@ -1,8 +1,8 @@
-import { FindByLocationDTO } from '@/dtos/pet/find-by-location.dto'
-import { FindByLocationResponseDTO } from '@/dtos/pet/find-by-location-response.dto'
+import { FindByLocationDTO } from '@/dtos/pets/find-by-location.dto'
+import { FindByLocationResponseDTO } from '@/dtos/pets/find-by-location-response.dto'
 import { PetRepository } from '@/repositories/pet-repository'
 
-export class FindByLocationUseCase {
+export class ListByLocationUseCase {
   constructor(private petsRepository: PetRepository) {}
 
   async execute(

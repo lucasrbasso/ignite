@@ -1,5 +1,5 @@
-import { RegisterPetResponseDTO } from '@/dtos/pet/register-pet-response.dto'
-import { RegisterPetDTO } from '@/dtos/pet/register-pet.dto'
+import { RegisterPetResponseDTO } from '@/dtos/pets/register-pet-response.dto'
+import { RegisterPetDTO } from '@/dtos/pets/register-pet.dto'
 import { PetRepository } from '@/repositories/pet-repository'
 
 export class RegisterPetUseCase {

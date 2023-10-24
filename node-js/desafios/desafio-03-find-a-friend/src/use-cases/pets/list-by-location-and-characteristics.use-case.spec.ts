@@ -1,15 +1,15 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 
 import { InMemoryPetRepository } from '@/repositories/in-memory/in-memory-pet.repository'
-import { FindByLocationAndCharacteristicsUseCase } from './find-by-location-and-characteristics.use-case'
+import { ListByLocationAndCharacteristicsUseCase } from './list-by-location-and-characteristics.use-case'
 
 let petRepository: InMemoryPetRepository
-let sut: FindByLocationAndCharacteristicsUseCase
+let sut: ListByLocationAndCharacteristicsUseCase
 
 describe('Find by Location and Characteristics Use Case', () => {
   beforeEach(() => {
     petRepository = new InMemoryPetRepository()
-    sut = new FindByLocationAndCharacteristicsUseCase(petRepository)
+    sut = new ListByLocationAndCharacteristicsUseCase(petRepository)
   })
 
   it('should be able to find by location and characteristics', async () => {

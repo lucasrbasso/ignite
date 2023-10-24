@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest'
-import { RegisterUseCase } from './register-organization.use-case'
+import { RegisterOrganizationUseCase } from './register-organization.use-case'
 import { InMemoryOrganizationRepository } from '@/repositories/in-memory/in-memory-organization.repository'
 import {
   OrganizationAlreadyExistsWithThisEmailError,
@@ -7,12 +7,12 @@ import {
 } from '@/errors/organization'
 
 let organizationRepository: InMemoryOrganizationRepository
-let sut: RegisterUseCase
+let sut: RegisterOrganizationUseCase
 
 describe('Register Use Case', () => {
   beforeEach(() => {
     organizationRepository = new InMemoryOrganizationRepository()
-    sut = new RegisterUseCase(organizationRepository)
+    sut = new RegisterOrganizationUseCase(organizationRepository)
   })
 
   it('should be able to register', async () => {

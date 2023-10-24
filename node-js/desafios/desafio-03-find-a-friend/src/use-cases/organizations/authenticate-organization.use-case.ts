@@ -1,6 +1,6 @@
 import { compare } from 'bcryptjs'
-import { AuthenticateOrganizationResponseDTO } from '@/dtos/organization/authenticate-organization-response.dto'
-import { AuthenticateOrganizationDTO } from '@/dtos/organization/authenticate-organization.dto'
+import { AuthenticateOrganizationResponseDTO } from '@/dtos/organizations/authenticate-organization-response.dto'
+import { AuthenticateOrganizationDTO } from '@/dtos/organizations/authenticate-organization.dto'
 import { BadCredentialsError } from '@/errors/organization'
 import { OrganizationRepository } from '@/repositories/organization-repository'
 

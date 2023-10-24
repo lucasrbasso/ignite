@@ -1,8 +1,8 @@
-import { FindByLocationAndCharacteristicsResponseDTO } from '@/dtos/pet/find-by-location-and-characteristics-response.dto'
-import { FindByLocationAndCharacteristicsDTO } from '@/dtos/pet/find-by-location-and-characteristics.dto'
+import { FindByLocationAndCharacteristicsResponseDTO } from '@/dtos/pets/find-by-location-and-characteristics-response.dto'
+import { FindByLocationAndCharacteristicsDTO } from '@/dtos/pets/find-by-location-and-characteristics.dto'
 import { PetRepository } from '@/repositories/pet-repository'
 
-export class FindByLocationAndCharacteristicsUseCase {
+export class ListByLocationAndCharacteristicsUseCase {
   constructor(private petsRepository: PetRepository) {}
 
   async execute({

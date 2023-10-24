@@ -1,15 +1,15 @@
 import { hash } from 'bcryptjs'
 
-import { RegisterOrganizationDTO } from '@/dtos/organization/register-organization.dto'
+import { RegisterOrganizationDTO } from '@/dtos/organizations/register-organization.dto'
 import { OrganizationRepository } from '@/repositories/organization-repository'
-import { RegisterOrganizationResponseDTO } from '@/dtos/organization/register-organization-response.dto'
+import { RegisterOrganizationResponseDTO } from '@/dtos/organizations/register-organization-response.dto'
 import {
   OrganizationAlreadyExistsWithThisEmailError,
   OrganizationAlreadyExistsWithThisPhoneNumberError,
 } from '@/errors/organization'
 import { logger } from '@/utils/logger'
 
-export class RegisterUseCase {
+export class RegisterOrganizationUseCase {
   constructor(private organizationRepository: OrganizationRepository) {}
 
   async execute({

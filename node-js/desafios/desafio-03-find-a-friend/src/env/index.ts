@@ -6,6 +6,8 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
   PORT: z.coerce.number().default(3333),
   JWT_SECRET: z.string(),
+  STORAGE_DRIVER: z.enum(['disk', 'storage']).default('disk'),
+  APP_API_URL: z.string().default('http://localhost:3333'),
 })
 
 const _env = envSchema.safeParse(process.env)
