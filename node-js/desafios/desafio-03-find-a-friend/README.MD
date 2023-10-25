@@ -1,8 +1,14 @@
 ### Desafio 
 Desenvolver uma api utilizando conceitos de SOLID para uma plataforma de adoção de animais.
 
-[Link do desafio](https://efficient-sloth-d85.notion.site/Desafio-03-0b927eb32dbd4f21ab40224ffdf6cf19)
-[Figma do projeto](https://www.figma.com/community/file/1220006040435238030)
+<p>
+  🔗 [Link do desafio](https://efficient-sloth-d85.notion.site/Desafio-03-0b927eb32dbd4f21ab40224ffdf6cf19)
+</p>
+<p>
+  🔗 [Figma do projeto](https://www.figma.com/community/file/1220006040435238030)
+</p>
+
+
 
 ### Regras da aplicação:
 
