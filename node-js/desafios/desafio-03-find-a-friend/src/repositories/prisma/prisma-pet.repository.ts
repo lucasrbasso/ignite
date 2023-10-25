@@ -23,6 +23,17 @@ export class PrismaPetRepository implements PetRepository {
           state: location.state,
         },
       },
+      include: {
+        Organization: {
+          select: {
+            cep: true,
+            state: true,
+            city: true,
+            phone_number: true,
+          },
+        },
+        pictures: true,
+      },
     })
 
     return pets
@@ -45,6 +56,17 @@ export class PrismaPetRepository implements PetRepository {
     const pet = await prisma.pet.findUnique({
       where: {
         id,
+      },
+      include: {
+        Organization: {
+          select: {
+            cep: true,
+            state: true,
+            city: true,
+            phone_number: true,
+          },
+        },
+        pictures: true,
       },
     })
 

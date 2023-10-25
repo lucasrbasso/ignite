@@ -37,7 +37,7 @@ export function errorHandler(
   }
 
   if (env.NODE_ENV !== 'production') {
-    logger.error(`path=${request.url}` + `${error}`)
+    logger.error(`path=${request.url}` + ' ' + `${error}`)
   } else {
     logger.error(`path=${request.url}` + `${error}`)
   }

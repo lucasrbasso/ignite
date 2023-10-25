@@ -13,6 +13,17 @@ import multer from 'fastify-multer'
 
 export const app = fastify()
 
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'refreshToken',
+    signed: false,
+  },
+  sign: {
+    expiresIn: '7d',
+  },
+})
+
 app.register(multer.contentParser)
 app.register(fastifyCookie)
 app.register(fastifyStatic, {
@@ -23,16 +34,5 @@ app.register(fastifyStatic, {
 app.register(petRoutes)
 app.register(organizationRoutes)
 app.register(pictureRoutes)
-
-app.register(fastifyJwt, {
-  secret: env.JWT_SECRET,
-  cookie: {
-    cookieName: 'refreshToken',
-    signed: false,
-  },
-  sign: {
-    expiresIn: '',
-  },
-})
 
 app.setErrorHandler(errorHandler)
