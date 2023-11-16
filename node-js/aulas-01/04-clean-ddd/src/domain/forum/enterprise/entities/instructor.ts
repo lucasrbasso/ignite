@@ -11,7 +11,7 @@ export class Instructor extends Entity<InstructorProps> {
     props: Optional<InstructorProps, 'createdAt'>,
     id?: UniqueEntityId,
   ) {
-    const student = new Instructor(
+    const instructor = new Instructor(
       {
         ...props,
         createdAt: new Date(),
@@ -19,6 +19,6 @@ export class Instructor extends Entity<InstructorProps> {
       id,
     )
 
-    return student
+    return instructor
   }
 }
