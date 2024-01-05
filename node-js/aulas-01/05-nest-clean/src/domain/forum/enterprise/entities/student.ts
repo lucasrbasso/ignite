@@ -2,11 +2,25 @@ import { Entity } from '@/core/entities/entity'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 
-interface StudentProps {
+export interface StudentProps {
   name: string
-  createdAt: Date
+  email: string
+  password: string
+  createdAt?: Date | null
 }
 export class Student extends Entity<StudentProps> {
+  get email() {
+    return this.props.email
+  }
+
+  get name() {
+    return this.props.name
+  }
+
+  get password() {
+    return this.props.password
+  }
+
   static create(
     props: Optional<StudentProps, 'createdAt'>,
     id?: UniqueEntityId,
@@ -14,7 +28,7 @@ export class Student extends Entity<StudentProps> {
     const student = new Student(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
