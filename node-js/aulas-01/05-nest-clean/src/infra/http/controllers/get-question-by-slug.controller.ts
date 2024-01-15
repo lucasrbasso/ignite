@@ -1,20 +1,21 @@
-import { Controller, Get, NotFoundException, Query } from '@nestjs/common'
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
+import { QuestionPresenter } from '../presenters/question-presenter'
 
-const slugQueryParamSchema = z.string()
+const slugParamSchema = z.string()
 
-const queryValidationPipe = new ZodValidationPipe(slugQueryParamSchema)
+const paramValidationPipe = new ZodValidationPipe(slugParamSchema)
 
-type SlugQueryParamSchema = z.infer<typeof slugQueryParamSchema>
+type SlugQueryParamSchema = z.infer<typeof slugParamSchema>
 
-@Controller('/questions')
+@Controller('/questions/:slug')
 export class GetQuestionBySlugController {
   constructor(private getQuestionBySlug: GetQuestionBySlugUseCase) {}
 
   @Get()
-  async handle(@Query('slug', queryValidationPipe) slug: SlugQueryParamSchema) {
+  async handle(@Param('slug', paramValidationPipe) slug: SlugQueryParamSchema) {
     const result = await this.getQuestionBySlug.execute({
       slug,
     })
@@ -24,8 +25,6 @@ export class GetQuestionBySlugController {
       throw new NotFoundException(error.message)
     }
 
-    const question = result.value.question
-
-    return { question }
+    return { question: QuestionPresenter.toHTTP(result.value.question) }
   }
 }

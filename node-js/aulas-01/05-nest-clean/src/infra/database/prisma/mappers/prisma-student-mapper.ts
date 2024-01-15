@@ -14,7 +14,7 @@ export class PrismaStudentMapper {
     )
   }
 
-  static toPrisma(student: Student): Prisma.UserUncheckedCreateInput {
+  static toPersistence(student: Student): Prisma.UserUncheckedCreateInput {
     return {
       id: student.id.toString(),
       name: student.name,
