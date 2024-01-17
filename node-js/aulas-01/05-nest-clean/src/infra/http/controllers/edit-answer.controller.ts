@@ -8,42 +8,40 @@ import {
   Put,
   UnauthorizedException,
 } from '@nestjs/common'
-import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-question'
-import { NotAllowedError } from '@/core/errors/not-allowed-error'
-import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
 import { CurrentUser } from '@/infra/auth/current-user.decorator'
 import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
+import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/not-allowed-error'
 
-const EditQuestionBodySchema = z.object({
-  title: z.string(),
+const EditAnswerBodySchema = z.object({
   content: z.string(),
 })
-const bodyValidationPipe = new ZodValidationPipe(EditQuestionBodySchema)
-type EditQuestionBodySchema = z.infer<typeof EditQuestionBodySchema>
+const bodyValidationPipe = new ZodValidationPipe(EditAnswerBodySchema)
+type EditAnswerBodySchema = z.infer<typeof EditAnswerBodySchema>
 
 const idParamSchema = z.string()
 const paramValidationPipe = new ZodValidationPipe(idParamSchema)
 
-@Controller('/questions/:id')
-export class EditQuestionController {
-  constructor(private EditQuestion: EditQuestionUseCase) {}
+@Controller('/answers/:id')
+export class EditAnswerController {
+  constructor(private editAnswer: EditAnswerUseCase) {}
 
   @Put()
   @HttpCode(204)
   async handle(
-    @Body(bodyValidationPipe) body: EditQuestionBodySchema,
+    @Body(bodyValidationPipe) body: EditAnswerBodySchema,
     @CurrentUser() user: UserPayload,
-    @Param('id', paramValidationPipe) questionId: string,
+    @Param('id', paramValidationPipe) answerId: string,
   ) {
-    const { title, content } = body
+    const { content } = body
     const userId = user.sub
 
-    const result = await this.EditQuestion.execute({
-      questionId,
+    const result = await this.editAnswer.execute({
       attachmentsIds: [],
-      title,
+      answerId,
       content,
       authorId: userId,
     })
