@@ -19,6 +19,7 @@ import { z } from 'zod'
 const EditQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 })
 const bodyValidationPipe = new ZodValidationPipe(EditQuestionBodySchema)
 type EditQuestionBodySchema = z.infer<typeof EditQuestionBodySchema>
@@ -37,12 +38,12 @@ export class EditQuestionController {
     @CurrentUser() user: UserPayload,
     @Param('id', paramValidationPipe) questionId: string,
   ) {
-    const { title, content } = body
+    const { title, content, attachments } = body
     const userId = user.sub
 
     const result = await this.EditQuestion.execute({
       questionId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
       title,
       content,
       authorId: userId,
