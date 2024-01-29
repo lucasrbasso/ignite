@@ -19,7 +19,7 @@ import { z } from 'zod'
 const EditQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
-  attachments: z.array(z.string().uuid()),
+  attachments: z.array(z.string().uuid()).default([]),
 })
 const bodyValidationPipe = new ZodValidationPipe(EditQuestionBodySchema)
 type EditQuestionBodySchema = z.infer<typeof EditQuestionBodySchema>
