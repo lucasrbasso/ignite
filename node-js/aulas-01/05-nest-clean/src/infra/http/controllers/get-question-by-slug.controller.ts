@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { QuestionPresenter } from '../presenters/question-presenter'
+import { QuestionDetailsPresenter } from '../presenters/question-details-presenter'
 
 const slugParamSchema = z.string()
 
@@ -25,6 +26,6 @@ export class GetQuestionBySlugController {
       throw new NotFoundException(error.message)
     }
 
-    return { question: QuestionPresenter.toHTTP(result.value.question) }
+    return { question: QuestionDetailsPresenter.toHTTP(result.value.question) }
   }
 }
