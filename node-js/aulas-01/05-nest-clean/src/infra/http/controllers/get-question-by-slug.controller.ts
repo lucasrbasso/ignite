@@ -2,7 +2,6 @@ import { Controller, Get, NotFoundException, Param } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
-import { QuestionPresenter } from '../presenters/question-presenter'
 import { QuestionDetailsPresenter } from '../presenters/question-details-presenter'
 
 const slugParamSchema = z.string()

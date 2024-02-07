@@ -10,9 +10,9 @@ import { makeAttachment } from 'test/factories/make-attachment'
 import { makeQuestionAttachment } from 'test/factories/make-question-attachments'
 
 let inMemoryStudentsRepository: InMemoryStudentsRepository
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
-let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository
 let sut: GetQuestionBySlugUseCase
 
 describe('Find question by slug', () => {

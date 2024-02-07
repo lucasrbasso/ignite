@@ -36,9 +36,12 @@ describe('Create Question', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    expect(result.value?.question.slug).toEqual(
-      Slug.createFromText(result.value!.question.title),
-    )
+
+    if (result.isRight()) {
+      expect(result.value.question.slug).toEqual(
+        Slug.createFromText(result.value.question.title),
+      )
+    }
 
     expect(
       inMemoryQuestionsRepository.items[0].attachments.currentItems,
