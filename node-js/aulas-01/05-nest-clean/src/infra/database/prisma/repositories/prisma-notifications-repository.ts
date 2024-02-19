@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma.service'
 import { PrismaNotificationMapper } from '../mappers/prisma-notification-mapper'
 import { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
 import { Notification } from '@/domain/notification/enterprise/entities/notification'
+import { PaginationParams } from '@/core/repositories/pagination-params'
 
 @Injectable()
 export class PrismaNotificationsRepository implements NotificationsRepository {
@@ -20,6 +21,24 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
     }
 
     return PrismaNotificationMapper.toDomain(notification)
+  }
+
+  async findManyByRecipientId(
+    recipientId: string,
+    { page }: PaginationParams,
+  ): Promise<Notification[]> {
+    const notifications = await this.prisma.notification.findMany({
+      where: {
+        recipientId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return notifications.map(PrismaNotificationMapper.toDomain)
   }
 
   async create(notification: Notification): Promise<void> {
