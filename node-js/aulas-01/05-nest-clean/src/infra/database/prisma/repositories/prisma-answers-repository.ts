@@ -6,6 +6,8 @@ import { PrismaService } from '../prisma.service'
 import { PrismaAnswerMapper } from '../mappers/prisma-answer-mapper'
 import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository'
 import { DomainEvents } from '@/core/events/domain-events'
+import { PrismaAnswerDetailsMapper } from '../mappers/prisma-answer-details-mapper'
+import { AnswerDetails } from '@/domain/forum/enterprise/entities/value-objects/answer-details'
 
 @Injectable()
 export class PrismaAnswersRepository implements AnswersRepository {
@@ -44,6 +46,33 @@ export class PrismaAnswersRepository implements AnswersRepository {
     })
 
     return answers.map(PrismaAnswerMapper.toDomain)
+  }
+
+  async findManyWithDetailsByQuestionId(
+    questionId: string,
+    { page }: PaginationParams,
+  ): Promise<AnswerDetails[]> {
+    const answers = await this.prisma.answer.findMany({
+      where: {
+        questionId,
+      },
+      include: {
+        author: true,
+        attachments: true,
+        comments: {
+          include: {
+            author: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return answers.map(PrismaAnswerDetailsMapper.toDomain)
   }
 
   async create(answer: Answer): Promise<void> {
