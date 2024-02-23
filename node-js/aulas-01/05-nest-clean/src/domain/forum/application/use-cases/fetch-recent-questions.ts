@@ -1,7 +1,7 @@
-import { Question } from '@/domain/forum/enterprise/entities/question'
 import { QuestionsRepository } from '../repositories/questions-repository'
 import { Either, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
+import { QuestionWithAuthor } from '../../enterprise/entities/value-objects/question-with-author'
 
 interface FetchRecentQuestionsUseCaseRequest {
   page: number
@@ -10,7 +10,7 @@ interface FetchRecentQuestionsUseCaseRequest {
 type FetchRecentQuestionsUseCaseResponse = Either<
   null,
   {
-    questions: Question[]
+    questions: QuestionWithAuthor[]
   }
 >
 
@@ -21,7 +21,9 @@ export class FetchRecentQuestionsUseCase {
   async execute({
     page,
   }: FetchRecentQuestionsUseCaseRequest): Promise<FetchRecentQuestionsUseCaseResponse> {
-    const questions = await this.questionsRepository.findManyRecent({ page })
+    const questions = await this.questionsRepository.findManyWithAuthorRecent({
+      page,
+    })
 
     return right({ questions })
   }

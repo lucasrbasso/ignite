@@ -6,6 +6,7 @@ import { InMemoryStudentsRepository } from './in-memory-students-repository'
 import { InMemoryAttachmentsRepository } from './in-memory-attachments-repository'
 import { InMemoryQuestionAttachmentsRepository } from './in-memory-question-attachments-repository'
 import { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details'
+import { QuestionWithAuthor } from '@/domain/forum/enterprise/entities/value-objects/question-with-author'
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
   constructor(
@@ -48,6 +49,37 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
       .slice((page - 1) * 20, page * 20)
 
     return questions
+  }
+
+  async findManyWithAuthorRecent({ page }: PaginationParams) {
+    const questions = this.items
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+      .slice((page - 1) * 20, page * 20)
+
+    const questionsWithAuthor = questions.map((question) => {
+      const author = this.studentsRepository.items.find((student) => {
+        return student.id.equals(question.authorId)
+      })
+
+      if (!author) {
+        throw new Error(
+          `Author with ID "${question.authorId.toString()}" does not exists`,
+        )
+      }
+
+      return QuestionWithAuthor.create({
+        title: question.title,
+        slug: question.slug,
+        createdAt: question.createdAt,
+        updatedAt: question.updatedAt,
+        bestAnswerId: question.bestAnswerId,
+        questionId: question.id,
+        author: author.name,
+        authorId: author.id,
+      })
+    })
+
+    return questionsWithAuthor
   }
 
   async findById(id: string) {
