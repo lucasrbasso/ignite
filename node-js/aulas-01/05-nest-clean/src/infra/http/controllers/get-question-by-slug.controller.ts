@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { QuestionDetailsPresenter } from '../presenters/question-details-presenter'
+import { ApiOperation } from '@nestjs/swagger'
 
 const slugParamSchema = z.string()
 
@@ -14,6 +15,11 @@ type SlugQueryParamSchema = z.infer<typeof slugParamSchema>
 export class GetQuestionBySlugController {
   constructor(private getQuestionBySlug: GetQuestionBySlugUseCase) {}
 
+  @ApiOperation({
+    summary: 'Get question with details',
+    description: '',
+    tags: ['Questions'],
+  })
   @Get()
   async handle(@Param('slug', paramValidationPipe) slug: SlugQueryParamSchema) {
     const result = await this.getQuestionBySlug.execute({

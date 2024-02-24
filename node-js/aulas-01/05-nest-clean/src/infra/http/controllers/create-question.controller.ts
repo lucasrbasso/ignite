@@ -10,13 +10,16 @@ import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
+import { ApiOperation, ApiBody } from '@nestjs/swagger'
+import { createZodDto } from '@anatine/zod-nestjs'
+import { extendApi } from '@anatine/zod-openapi'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
   attachments: z.array(z.string().uuid()).default([]),
 })
-
+const SwaggerType = createZodDto(extendApi(createQuestionBodySchema))
 const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema)
 
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
@@ -25,6 +28,15 @@ type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 export class CreateQuestionController {
   constructor(private createQuestion: CreateQuestionUseCase) {}
 
+  @ApiOperation({
+    summary: 'Create a new question',
+    description: 'Use this endpoint to create a new question',
+    tags: ['Questions'],
+  })
+  @ApiBody({
+    type: SwaggerType,
+    description: 'Required values for create a new question',
+  })
   @Post()
   @HttpCode(201)
   async handle(
