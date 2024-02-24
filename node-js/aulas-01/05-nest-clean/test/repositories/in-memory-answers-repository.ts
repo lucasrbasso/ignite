@@ -115,7 +115,8 @@ export class InMemoryAnswersRepository implements AnswersRepository {
         .then((value) => (comments = value))
 
       return AnswerDetails.create({
-        questionId: answer.id,
+        answerId: answer.id,
+        questionId: answer.questionId,
         authorId: answer.authorId,
         author: author.name,
         content: answer.content,
