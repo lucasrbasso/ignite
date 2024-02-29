@@ -1,10 +1,15 @@
-import { NestFactory } from '@nestjs/core'
+/* eslint-disable import/first */
+import { otelSDK } from './telemetry/tracing'
+
+import * as core from '@nestjs/core'
 import { AppModule } from './app.module'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { EnvService } from '@/infra/env/env.service'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  await Promise.resolve(otelSDK.start()).then(() => console.log('teste'))
+
+  const app = await core.NestFactory.create(AppModule)
   const configService = app.get(EnvService)
   const port = configService.get('PORT')
 
@@ -19,4 +24,5 @@ async function bootstrap() {
 
   await app.listen(port)
 }
+
 bootstrap()
