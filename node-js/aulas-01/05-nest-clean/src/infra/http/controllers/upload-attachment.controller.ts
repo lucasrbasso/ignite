@@ -11,6 +11,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
+import { ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger'
+import { FileUploadDto } from '../swagger-dtos/file-upload.dto'
 
 @Controller('/attachments')
 export class UploadAttachmentController {
@@ -18,6 +20,15 @@ export class UploadAttachmentController {
     private uploadAndCreateAttachment: UploadAndCreateAttachmentUseCase,
   ) {}
 
+  @ApiOperation({
+    summary: 'Upload an attachment',
+    description: 'Upload an attachment and get an attachment.id',
+    tags: ['Attachments'],
+  })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    type: FileUploadDto,
+  })
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async handle(

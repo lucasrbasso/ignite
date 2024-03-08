@@ -15,6 +15,8 @@ import { CurrentUser } from '@/infra/auth/current-user.decorator'
 import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { EditQuestionDTO } from '../swagger-dtos/edit-question.dto'
 
 const EditQuestionBodySchema = z.object({
   title: z.string(),
@@ -31,6 +33,27 @@ const paramValidationPipe = new ZodValidationPipe(idParamSchema)
 export class EditQuestionController {
   constructor(private EditQuestion: EditQuestionUseCase) {}
 
+  @ApiOperation({
+    summary: 'Edit a question',
+    description: 'Edit a question',
+    tags: ['Questions'],
+  })
+  @ApiBody({
+    type: EditQuestionDTO,
+    description: 'Required values for edit a question',
+  })
+  @ApiResponse({
+    status: 204,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Not found.',
+  })
   @Put()
   @HttpCode(204)
   async handle(

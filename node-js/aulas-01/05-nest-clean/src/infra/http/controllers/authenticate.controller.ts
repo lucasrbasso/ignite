@@ -12,6 +12,8 @@ import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases
 import { z } from 'zod'
 import { WrongCredentialsError } from '@/domain/forum/application/use-cases/errors/wrong-credentials-error'
 import { Public } from '@/infra/auth/public'
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { AuthenticateDTO } from '../swagger-dtos/authenticate.dto'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -19,11 +21,31 @@ const authenticateBodySchema = z.object({
 })
 
 type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
-
 @Controller('/sessions')
 export class AuthenticateController {
   constructor(private authenticateStudent: AuthenticateStudentUseCase) {}
 
+  @ApiOperation({
+    summary: 'Authenticate',
+    description: 'Authenticate with credentials',
+    tags: ['Sessions'],
+  })
+  @ApiBody({
+    type: AuthenticateDTO,
+    description: 'Required body for authenticate.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request.',
+  })
   @Public()
   @Post()
   @HttpCode(200)

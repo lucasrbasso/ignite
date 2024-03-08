@@ -15,6 +15,8 @@ import { z } from 'zod'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { EditAnswerDTO } from '../swagger-dtos/edit-answer.dto'
 
 const EditAnswerBodySchema = z.object({
   content: z.string(),
@@ -30,6 +32,27 @@ const paramValidationPipe = new ZodValidationPipe(idParamSchema)
 export class EditAnswerController {
   constructor(private editAnswer: EditAnswerUseCase) {}
 
+  @ApiOperation({
+    summary: 'Edit an answer',
+    description: 'Edit an answer',
+    tags: ['Answers'],
+  })
+  @ApiBody({
+    type: EditAnswerDTO,
+    description: 'Required values for edit an answer',
+  })
+  @ApiResponse({
+    status: 204,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Not found.',
+  })
   @Put()
   @HttpCode(204)
   async handle(

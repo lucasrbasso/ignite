@@ -13,6 +13,8 @@ import { Public } from '@/infra/auth/public'
 import { z } from 'zod'
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
 import { StudentAlreadyExistsError } from '@/domain/forum/application/use-cases/errors/student-already-exists-error'
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { CreateAccountDTO } from '../swagger-dtos/create-account-dto'
 
 const createAccountBodySchema = z.object({
   name: z.string(),
@@ -26,6 +28,27 @@ type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>
 export class CreateAccountController {
   constructor(private registerStudent: RegisterStudentUseCase) {}
 
+  @ApiOperation({
+    summary: 'Create a new account',
+    description: 'Create a new account',
+    tags: ['Accounts'],
+  })
+  @ApiBody({
+    type: CreateAccountDTO,
+    description: 'Required values for create an account',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request.',
+  })
+  @ApiResponse({
+    status: 409,
+    description: 'Conflict.',
+  })
   @Public()
   @Post()
   @HttpCode(201)

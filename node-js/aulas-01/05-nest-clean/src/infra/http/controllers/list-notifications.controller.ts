@@ -6,6 +6,7 @@ import { CurrentUser } from '@/infra/auth/current-user.decorator'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { NotificationsPresenter } from '../presenters/notifications-presenter'
+import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 const pageQueryParamSchema = z
   .string()
@@ -21,6 +22,19 @@ type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
 export class ListNotificationsController {
   constructor(private listNotifications: ListNotificationsUseCase) {}
 
+  @ApiOperation({
+    summary: 'List notifications',
+    description: 'Lis tall notification by logged user',
+    tags: ['Notifications'],
+  })
+  @ApiResponse({
+    status: 200,
+    isArray: true,
+    description: 'List with notifications',
+  })
+  @ApiResponse({
+    status: 400,
+  })
   @Get()
   async handle(
     @CurrentUser() user: UserPayload,

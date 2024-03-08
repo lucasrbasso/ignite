@@ -10,16 +10,15 @@ import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
-import { ApiOperation, ApiBody } from '@nestjs/swagger'
-import { createZodDto } from '@anatine/zod-nestjs'
-import { extendApi } from '@anatine/zod-openapi'
+import { ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger'
+import { CreateQuestionDTO } from '../swagger-dtos/create-question.dto'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
   attachments: z.array(z.string().uuid()).default([]),
 })
-const SwaggerType = createZodDto(extendApi(createQuestionBodySchema))
+
 const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema)
 
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
@@ -34,8 +33,16 @@ export class CreateQuestionController {
     tags: ['Questions'],
   })
   @ApiBody({
-    type: SwaggerType,
+    type: CreateQuestionDTO,
     description: 'Required values for create a new question',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request.',
   })
   @Post()
   @HttpCode(201)

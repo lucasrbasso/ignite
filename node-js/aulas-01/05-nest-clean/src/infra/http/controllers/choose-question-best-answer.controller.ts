@@ -9,6 +9,7 @@ import {
 import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer'
 import { CurrentUser } from '@/infra/auth/current-user.decorator'
+import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 @Controller('/answers/:answerId/choose-as-best')
 export class ChooseQuestionBestAnswerController {
@@ -16,6 +17,19 @@ export class ChooseQuestionBestAnswerController {
     private chooseQuestionBestAnswer: ChooseQuestionBestAnswerUseCase,
   ) {}
 
+  @ApiOperation({
+    summary: 'Choose answer as best answer for a question',
+    description: 'Choose answer as best answer for a question by answerId',
+    tags: ['Answers'],
+  })
+  @ApiResponse({
+    status: 204,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request.',
+  })
   @Patch()
   @HttpCode(204)
   async handle(

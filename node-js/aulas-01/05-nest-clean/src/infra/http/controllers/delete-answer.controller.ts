@@ -15,6 +15,7 @@ import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { z } from 'zod'
+import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 const idParamSchema = z.string()
 const paramValidationPipe = new ZodValidationPipe(idParamSchema)
@@ -23,6 +24,27 @@ const paramValidationPipe = new ZodValidationPipe(idParamSchema)
 export class DeleteAnswerController {
   constructor(private deleteAnswer: DeleteAnswerUseCase) {}
 
+  @ApiOperation({
+    summary: 'Delete an answer',
+    description: 'Delete an answer by answerId',
+    tags: ['Answers'],
+  })
+  @ApiResponse({
+    status: 204,
+    description: 'Successful.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Not found.',
+  })
   @Delete()
   @HttpCode(204)
   async handle(

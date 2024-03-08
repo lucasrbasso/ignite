@@ -7,7 +7,9 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { EnvService } from '@/infra/env/env.service'
 
 async function bootstrap() {
-  await Promise.resolve(otelSDK.start()).then(() => console.log('teste'))
+  await Promise.resolve(otelSDK.start()).then(() =>
+    console.log('Opentelemetry started'),
+  )
 
   const app = await core.NestFactory.create(AppModule)
   const configService = app.get(EnvService)
@@ -15,9 +17,8 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Forum api')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('Accounts')
+    .setDescription('The forum API endpoints')
+    .setVersion('1.1')
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)
