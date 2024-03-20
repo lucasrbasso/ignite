@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   HttpCode,
+  Logger,
   Post,
   UnauthorizedException,
   UsePipes,
@@ -23,6 +24,8 @@ const authenticateBodySchema = z.object({
 type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
 @Controller('/sessions')
 export class AuthenticateController {
+  private readonly logger = new Logger('AuthenticateController')
+
   constructor(private authenticateStudent: AuthenticateStudentUseCase) {}
 
   @ApiOperation({
@@ -60,10 +63,14 @@ export class AuthenticateController {
 
     if (result.isLeft()) {
       const error = result.value
+      this.logger.error(
+        `error m=handle c=AuthenticateController message=${error.message}`,
+      )
 
       switch (error.constructor) {
         case WrongCredentialsError:
           throw new UnauthorizedException(error.message)
+
         default:
           throw new BadRequestException(error.message)
       }

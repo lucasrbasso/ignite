@@ -2,6 +2,9 @@ import { QuestionWithAuthor } from '@/domain/forum/enterprise/entities/value-obj
 
 export class QuestionWithAuthorPresenter {
   static toHTTP(question: QuestionWithAuthor) {
+    console.log(question)
+    console.log(question.questionId)
+
     return {
       id: question.questionId.toString(),
       authorId: question.authorId.toString(),

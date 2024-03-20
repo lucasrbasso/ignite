@@ -38,8 +38,9 @@ describe('Create Question', () => {
     expect(result.isRight()).toBe(true)
 
     if (result.isRight()) {
-      expect(result.value.question.slug).toEqual(
-        Slug.createFromText(result.value.question.title),
+      const slug = Slug.createFromText(result.value.question.title)
+      expect(result.value.question.slug.value).toEqual(
+        expect.stringContaining(slug.value),
       )
     }
 

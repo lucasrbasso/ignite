@@ -72,6 +72,10 @@ export class Question extends AggregateRoot<QuestionProps> {
     return this.props.slug
   }
 
+  set slug(slug: Slug) {
+    this.props.slug = slug
+  }
+
   get attachments() {
     return this.props.attachments
   }

@@ -16,6 +16,8 @@ type PrismaQuestionDetails = PrismaQuestion & {
 
 export class PrismaQuestionDetailsMapper {
   static toDomain(raw: PrismaQuestionDetails): QuestionDetails {
+    console.log(raw)
+
     return QuestionDetails.create({
       questionId: new UniqueEntityId(raw.id),
       authorId: new UniqueEntityId(raw.author.id),

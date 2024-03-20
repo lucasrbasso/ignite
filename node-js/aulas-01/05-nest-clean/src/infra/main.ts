@@ -1,5 +1,6 @@
 /* eslint-disable import/first */
 import { otelSDK } from './telemetry/tracing'
+import { Logger } from 'nestjs-pino';
 
 import * as core from '@nestjs/core'
 import { AppModule } from './app.module'
@@ -12,6 +13,8 @@ async function bootstrap() {
   )
 
   const app = await core.NestFactory.create(AppModule)
+
+  app.useLogger(app.get(Logger))
   const configService = app.get(EnvService)
   const port = configService.get('PORT')
 
@@ -22,6 +25,7 @@ async function bootstrap() {
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)
+
 
   await app.listen(port)
 }

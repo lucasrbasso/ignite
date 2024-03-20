@@ -5,6 +5,7 @@ import { QuestionAttachment } from '../../enterprise/entities/question-attachmen
 import { Either, right } from '@/core/either'
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
 import { Injectable } from '@nestjs/common'
+import { Slug } from '../../enterprise/entities/value-objects/slug'
 
 interface CreateQuestionUseCaseRequest {
   authorId: string
@@ -34,6 +35,7 @@ export class CreateQuestionUseCase {
       authorId: new UniqueEntityId(authorId),
       title,
       content,
+      slug: Slug.createFromText(`${title} ${new Date().valueOf()}`),
     })
 
     const questionAttachments = attachmentsIds.map((attachmentId) => {
