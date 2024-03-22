@@ -14,12 +14,13 @@ Content-Type: application/json
 ###
 
 # @name authenticate
-POST {{baseUrl}}/sessions
+POST {{baseUrl}}/sessions   
 Content-Type: application/json
+X-correlation-id: 'oiajdoiawjdiajd
 
 {
   "email": "lucas@basso.com",
-  "password": "1234567"
+  "password": "12345678"
 }
 
 ###

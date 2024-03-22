@@ -9,8 +9,6 @@ import { EventModule } from './events/events.module'
 import { LoggerMiddleware } from './middlewares/logger'
 import { LoggerModule } from 'nestjs-pino'
 import { randomUUID } from 'node:crypto'
-import { colorizerFactory } from 'pino-pretty'
-import pino from 'pino'
 
 @Module({
   imports: [
@@ -29,16 +27,19 @@ import pino from 'pino'
                 singleLine: true,
                 levelFirst: false,
                 translateTime: "yyyy-mm-dd'T'HH:MM:ss.l'Z'",
-                messageFormat: "{pid} - {if req_id}req_id={reqId} trace_id={trace_id} span_id={span_id}{end} {msg}",
-                ignore: "pid,hostname,context,req,res,responseTime",
+                messageFormat:
+                  '{pid} - {if req.id} trace_id={trace_id} span_id={span_id} req_id={req.id} req_from={req.url} {end} {msg}',
+                ignore:
+                  'pid,hostname,req,context,res,responseTime,trace_id,span_id,trace_flags',
                 errorLikeObjectKeys: ['err', 'error'],
               },
             },
             host: '[FORUM-API]',
             autoLogging: false,
-            genReqId: (request) => request.headers['x-correlation-id'] || randomUUID(),
+            genReqId: (request) =>
+              request.headers['x-correlation-id'] || randomUUID(),
           },
-        };
+        }
       },
     }),
     ConfigModule.forRoot({
