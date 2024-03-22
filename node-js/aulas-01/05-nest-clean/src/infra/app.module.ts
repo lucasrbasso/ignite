@@ -9,9 +9,19 @@ import { EventModule } from './events/events.module'
 import { LoggerMiddleware } from './middlewares/logger'
 import { LoggerModule } from 'nestjs-pino'
 import { randomUUID } from 'node:crypto'
+import { APP_FILTER, APP_GUARD } from '@nestjs/core'
+import { AllExceptionsFilter } from './errors/exception-handler'
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        ttl: 1000 * 2, // 2s seconds
+        limit: 20,
+      },
+    ]),
+
     LoggerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -51,6 +61,13 @@ import { randomUUID } from 'node:crypto'
     DatabaseModule,
     EnvModule,
     EventModule,
+  ],
+  providers: [
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
   ],
 })
 export class AppModule implements NestModule {

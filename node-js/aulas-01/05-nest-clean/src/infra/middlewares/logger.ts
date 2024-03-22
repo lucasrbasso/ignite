@@ -15,7 +15,7 @@ export class LoggerMiddleware implements NestMiddleware {
 
       if (![200, 201, 204].includes(statusCode)) {
         this.logger.error(
-          `${method} ${originalUrl} ${statusCode} ${contentLength} - ${userAgent} ${ip}`,
+          `method=${method} url=${originalUrl} response_code=${statusCode} content_length=${contentLength} - user_agent=${userAgent} ip=${ip}`,
         )
       }
     })

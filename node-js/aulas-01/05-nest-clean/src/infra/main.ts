@@ -1,6 +1,7 @@
 /* eslint-disable import/first */
 import { otelSDK } from './telemetry/tracing'
 import { Logger, LoggerErrorInterceptor } from 'nestjs-pino'
+import helmet from 'helmet'
 
 import * as core from '@nestjs/core'
 import { AppModule } from './app.module'
@@ -15,6 +16,7 @@ async function bootstrap() {
   const app = await core.NestFactory.create(AppModule)
 
   app.useLogger(app.get(Logger))
+  app.use(helmet())
   app.useGlobalInterceptors(new LoggerErrorInterceptor())
 
   const configService = app.get(EnvService)

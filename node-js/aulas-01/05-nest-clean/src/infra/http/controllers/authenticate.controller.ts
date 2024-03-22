@@ -3,7 +3,6 @@ import {
   Body,
   Controller,
   HttpCode,
-  Logger,
   Post,
   UnauthorizedException,
   UsePipes,
@@ -15,6 +14,7 @@ import { WrongCredentialsError } from '@/domain/forum/application/use-cases/erro
 import { Public } from '@/infra/auth/public'
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { AuthenticateDTO } from '../swagger-dtos/authenticate.dto'
+import { Throttle } from '@nestjs/throttler'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -22,10 +22,9 @@ const authenticateBodySchema = z.object({
 })
 
 type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
+@Throttle({ default: { limit: 3, ttl: 1000 } })
 @Controller('/sessions')
 export class AuthenticateController {
-  private readonly logger = new Logger('AuthenticateController')
-
   constructor(private authenticateStudent: AuthenticateStudentUseCase) {}
 
   @ApiOperation({
@@ -63,10 +62,6 @@ export class AuthenticateController {
 
     if (result.isLeft()) {
       const error = result.value
-      this.logger.error(
-        `error m=handle c=AuthenticateController message=${error.message}`,
-      )
-
       switch (error.constructor) {
         case WrongCredentialsError:
           throw new UnauthorizedException(error.message)
